@@ -99,7 +99,7 @@ const Slide = ({ children, translate, transition, color }) => {
                 <label htmlFor="tentacles">Enter the number of columns in the array (3-50):</label>
 
                 <input ref={container} type="number" name="tentacles" min="3" max="50" defaultValue="3" />
-                <button onClick={() => ShowResult()}>Расчитать</button> <br />
+                <button onClick={() => ShowResult()}>Сalculate</button> <br />
                 <label> {masString} </label> <br />
                 <label> [{result}] </label>
             </div>

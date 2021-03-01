@@ -115,7 +115,7 @@ const Slide = ({ children, translate, transition, color }) => {
                 <input ref={limit} type="number" name="limit" min="1" max="50" defaultValue="10" />
 
 
-                <button onClick={() => ShowResult()}>Расчитать</button> <br />
+                <button onClick={() => ShowResult()}>Сalculate</button> <br />
                 <label> {masString} </label> <br />
                 <label> [{result}] </label>
             </div>
