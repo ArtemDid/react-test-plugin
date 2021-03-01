@@ -7,6 +7,11 @@ const Slide = ({ children, translate, transition, color }) => {
     const [width, updateWidth] = useState(1);
     const [masString, updateMasString] = useState("");
     const [result, updateResult] = useState("");
+    var matrix = [[]];
+    var results = [];
+    var checkingMatrix = [];
+    var arrayString = "";
+    var tmp2 = 0;
 
     useEffect(() => {
         setTimeout(() => {
@@ -30,49 +35,44 @@ const Slide = ({ children, translate, transition, color }) => {
         // enterLength(container.current.value);
     }
 
+    //удаляет первый столбец из матрицы
+    function ShiftMatrixArr() {
+        for (let i = 0; i < matrix.length; i++) {
+            matrix[i].shift();
+        }
+    }
+
+    //определяет макс.длину строки в матрице
+    function GetMaxLengthMatrixArr() {
+        var max = matrix[0].length;
+        for (let i = 0; i < matrix.length; i++) {
+            if (matrix[i].length > max) {
+                max = matrix[i].length;
+            }
+        }
+        return max;
+    }
+
+    //поиск чисел, если нет нужной цифры - false
+    function findNumbers() {
+        var result = true;
+        if (!checkingMatrix.find(item => item === 1)) { result = false; }
+        if (!checkingMatrix.find(item => item === 2)) { result = false; }
+        if (!checkingMatrix.find(item => item === 3)) { result = false; }
+        if (!checkingMatrix.find(item => item === 4)) { result = false; }
+        if (!checkingMatrix.find(item => item === 5)) { result = false; }
+        if (!checkingMatrix.find(item => item === 6)) { result = false; }
+        if (!checkingMatrix.find(item => item === 7)) { result = false; }
+        if (!checkingMatrix.find(item => item === 8)) { result = false; }
+        if (!checkingMatrix.find(item => item === 9)) { result = false; }
+
+        return result;
+    }
+
     function ShowResult() {
         var length = container.current.value;
-        var matrix = [[]];
-        var results = [];
-        var checkingMatrix = [];
-        var arrayString = "";
-        var tmp2 = 0;
 
-        //удаляет первый столбец из матрицы
-        function ShiftMatrixArr() {
-            for (let i = 0; i < matrix.length; i++) {
-                matrix[i].shift();
-            }
-        }
-
-        //определяет макс.длину строки в матрице
-        function GetMaxLengthMatrixArr() {
-            var max = matrix[0].length;
-            for (let i = 0; i < matrix.length; i++) {
-                if (matrix[i].length > max) {
-                    max = matrix[i].length;
-                }
-            }
-            return max;
-        }
-
-        //поиск чисел, если нет нужной цифры - false
-        function findNumbers() {
-            var result = true;
-            if (!checkingMatrix.find(item => item == 1)) { result = false; }
-            if (!checkingMatrix.find(item => item == 2)) { result = false; }
-            if (!checkingMatrix.find(item => item == 3)) { result = false; }
-            if (!checkingMatrix.find(item => item == 4)) { result = false; }
-            if (!checkingMatrix.find(item => item == 5)) { result = false; }
-            if (!checkingMatrix.find(item => item == 6)) { result = false; }
-            if (!checkingMatrix.find(item => item == 7)) { result = false; }
-            if (!checkingMatrix.find(item => item == 8)) { result = false; }
-            if (!checkingMatrix.find(item => item == 9)) { result = false; }
-
-            return result;
-        }
-
-        //присваиваем элементы для нешей матрицы
+        //присваиваем элементы для нашей матрицы
         for (let i = 0; i < 3; i++) {
             let tmp = [];
             for (let j = 0; j < length; j++) {
@@ -108,7 +108,7 @@ const Slide = ({ children, translate, transition, color }) => {
                 <input ref={container} type="number" name="tentacles" min="3" max="50" defaultValue="3" onChange={(e) => componentDidMount(e)} />
                 <button onClick={() => ShowResult()}>Расчитать</button> <br />
                 <label> {masString} </label> <br />
-                <label> {result} </label>
+                <label> [{result}] </label>
             </div>
             <footer className={css.footer}>
                 {children}

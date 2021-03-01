@@ -3,9 +3,7 @@ import Swiper from 'react-id-swiper';
 import 'swiper/swiper.scss';
 import Slide from '../Slide/Slide';
 import Slide_Task_2 from '../Slide/Slide_Task_2';
-
-
-import data from '../../data';
+import Slide_Task_1 from '../Slide/Slide_Task_1';
 
 const StickySlider = () => {
   const [swiper, updateSwiper] = useState(null);
@@ -42,13 +40,13 @@ const StickySlider = () => {
       ))} */}
 
       <div>
-        <Slide
+        <Slide_Task_1
           translate={translate}
           transition={transition}
           color={"#aac3bf"}
         >
           Task 1
-        </Slide>
+        </Slide_Task_1>
       </div>
       <div>
         <Slide_Task_2
