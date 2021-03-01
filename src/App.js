@@ -1,4 +1,4 @@
-import StickySlider from './components/StickySlider';
+import StickySlider from './components/StickySlider/StickySlider';
 import css from './App.module.scss';
 
 function App() {

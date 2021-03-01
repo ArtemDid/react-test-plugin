@@ -30,11 +30,6 @@ const Slide = ({ children, translate, transition, color }) => {
         transition: `${transition}ms`,
     } : {};
 
-    function componentDidMount(e) {
-        console.log(container.current.value);
-        // enterLength(container.current.value);
-    }
-
     //удаляет первый столбец из матрицы
     function ShiftMatrixArr() {
         for (let i = 0; i < matrix.length; i++) {
@@ -78,7 +73,6 @@ const Slide = ({ children, translate, transition, color }) => {
             for (let j = 0; j < length; j++) {
                 tmp2 = Math.floor(Math.random() * (9)) + 1;
                 tmp.push(tmp2);
-                console.log(tmp)
                 arrayString += tmp2;
             }
             matrix.push(tmp)
@@ -89,7 +83,6 @@ const Slide = ({ children, translate, transition, color }) => {
             for (let i = 0; i < matrix.length; i++) {
                 checkingMatrix.push(matrix[i][0], matrix[i][1], matrix[i][2]);
             }
-            console.log(checkingMatrix)
             results.push(findNumbers());
             checkingMatrix = [];
         }
@@ -105,7 +98,7 @@ const Slide = ({ children, translate, transition, color }) => {
             <div className={css.content} style={{ background: color }}>
                 <label htmlFor="tentacles">Enter the number of columns in the array (3-50):</label>
 
-                <input ref={container} type="number" name="tentacles" min="3" max="50" defaultValue="3" onChange={(e) => componentDidMount(e)} />
+                <input ref={container} type="number" name="tentacles" min="3" max="50" defaultValue="3" />
                 <button onClick={() => ShowResult()}>Расчитать</button> <br />
                 <label> {masString} </label> <br />
                 <label> [{result}] </label>

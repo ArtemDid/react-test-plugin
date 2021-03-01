@@ -11,7 +11,7 @@ const StickySlider = () => {
   const [transition, updateTransition] = useState(0);
 
   const params = {
-    slidesPerView: 3,
+    slidesPerView: 2
   };
 
   useEffect(() => {
@@ -26,6 +26,7 @@ const StickySlider = () => {
   }, [swiper]);
 
   return (
+
     <Swiper getSwiper={updateSwiper} {...params}>
       <div>
         <Slide_Task_1

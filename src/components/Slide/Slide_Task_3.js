@@ -9,7 +9,6 @@ const Slide = ({ children, translate, transition, color }) => {
     const [width, updateWidth] = useState(1);
     const [masString, updateMasString] = useState("");
     const [result, updateResult] = useState("");
-    var temp = 0;
     var matrix = [];
     var matrixArray = [];
     var format = [];
@@ -54,55 +53,52 @@ const Slide = ({ children, translate, transition, color }) => {
         var lengthLines = lines.current.value;
         var lengthLimit = limit.current.value;
 
-        var tmp = "";
-
         createArray(lengthLines);
 
         for (let i = 0; i < matrix.length; i++) {
-            if (matrix[i].length < lengthLimit) {
+            let length = matrix[i].length;
+
+            if (length <= lengthLimit) {
                 let temp = "";
-                let length = matrix[i].length
+
                 for (let j = 0; j < lengthLimit - length; j++) {
                     temp += "\u00A0";
                 }
                 if (format[i] === "LEFT") {
                     arrResult.push("*" + matrix[i] + temp + "*");
                 }
-                else{
-                    arrResult.push("*" + temp + matrix[i] +  "*");
+                else {
+                    arrResult.push("*" + temp + matrix[i] + "*");
                 }
             }
-            else{
+            else {
                 let temp = "";
-                for (let j = 0; j < matrix[i].length-lengthLimit; j++) {
-                    temp+=matrix[i][j];
+
+                temp = matrix[i].substr(matrix[i].length - lengthLimit);
+                matrix[i] = matrix[i].substr(0, matrix[i].length - lengthLimit);
+                matrix.splice(i, 0, temp);
+
+                if (Math.floor(Math.random() * (2)) + 1 === 1) {
+                    format.push("LEFT");
                 }
+                else {
+                    format.push("RIGHT");
+                }
+
+                temp = "";
                 
-                arr.splice(i, 0, item);
+                for (let j = 0; j < lengthLimit - length; j++) {
+                    temp += "\u00A0";
+                }
+                if (format[i] === "LEFT") {
+                    arrResult.push("*" + matrix[i] + temp + "*");
+                }
+                else {
+                    arrResult.push("*" + temp + matrix[i] + "*");
+                }
             }
 
         }
-
-        console.log(arrResult[0].length)
-
-        console.log(matrix)
-        console.log(format)
-        console.log(matrixArray)
-
-        // for (let i = 0; i < length; i++) {
-        //     temp = Math.floor(Math.random() * (9)) + 1;
-        //     matrix.push(temp);
-        // }
-
-        // for (let i = 1; i < length - 1; i++) {
-
-        //     if ((matrix[i] > matrix[i - 1] && matrix[i] > matrix[i + 1]) || (matrix[i] < matrix[i - 1] && matrix[i] < matrix[i + 1])) {
-        //         arrResult.push(1);
-        //     }
-        //     else {
-        //         arrResult.push(0);
-        //     }
-        // }
 
         updateMasString(matrix.toString());
         updateResult(arrResult.toString());
