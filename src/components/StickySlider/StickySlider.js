@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Swiper from 'react-id-swiper';
 import 'swiper/swiper.scss';
-import Slide from '../Slide/Slide';
-import Slide_Task_2 from '../Slide/Slide_Task_2';
 import Slide_Task_1 from '../Slide/Slide_Task_1';
+import Slide_Task_2 from '../Slide/Slide_Task_2';
+import Slide_Task_3 from '../Slide/Slide_Task_3';
 
 const StickySlider = () => {
   const [swiper, updateSwiper] = useState(null);
@@ -27,18 +27,6 @@ const StickySlider = () => {
 
   return (
     <Swiper getSwiper={updateSwiper} {...params}>
-      {/* {data.map((item, idx) => (
-        <div key={idx}>
-          <Slide
-            translate={translate}
-            transition={transition}
-            color={item.color}
-          >
-            {item.title}
-          </Slide>
-        </div>
-      ))} */}
-
       <div>
         <Slide_Task_1
           translate={translate}
@@ -58,13 +46,13 @@ const StickySlider = () => {
         </Slide_Task_2>
       </div>
       <div>
-        <Slide
+        <Slide_Task_3
           translate={translate}
           transition={transition}
           color={"#d5a29c"}
         >
           Task 3
-        </Slide>
+        </Slide_Task_3>
       </div>
     </Swiper>
   );
